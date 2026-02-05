@@ -1,0 +1,227 @@
+/* --- Q-ALSYS 2026 THEME VARIABLES --- */
+:root {
+    --bg-dark: #03030b;
+    --bg-panel: rgba(15, 15, 30, 0.7);
+    --neon-blue: #00f3ff;
+    --neon-purple: #bc13fe;
+    --neon-gold: #ffd700;
+    --text-main: #e0e0ff;
+    --text-muted: #8a8ab5;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Exo 2', sans-serif;
+}
+
+/* --- GLOBAL SETUP --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4, h5 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 1px; }
+a { text-decoration: none; transition: 0.3s; color: inherit; }
+a:hover { text-decoration: none; color: var(--neon-blue); }
+
+/* --- BACKGROUND ANIMATION --- */
+.quantum-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
+    background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #000 100%);
+    overflow: hidden;
+}
+.grid-overlay {
+    position: absolute; width: 200%; height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(45deg) translate(-25%, -25%);
+    top: 0; left: 0;
+}
+.glow-orb {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+}
+.orb-1 { width: 400px; height: 400px; background: var(--neon-blue); top: -100px; left: -100px; animation: float 10s infinite alternate; }
+.orb-2 { width: 300px; height: 300px; background: var(--neon-purple); bottom: -50px; right: -50px; animation: float 12s infinite alternate-reverse; }
+
+@keyframes float { 0% { transform: translate(0,0); } 100% { transform: translate(50px, 50px); } }
+
+/* --- NAVIGATION --- */
+header {
+    /* Wraps the nav to ensure it sits on top */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.glass-nav {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(3, 3, 11, 0.9); /* Slightly darker for better readability */
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    width: 100%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.logo-text { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: #fff; }
+.logo-text .year { color: var(--neon-blue); }
+.nav-links { display: flex; gap: 25px; align-items: center; }
+.nav-item { color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-transform: uppercase; cursor: pointer; }
+.nav-item:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+
+.cyber-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.cyber-btn:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+.hamburger-icon { display: none; font-size: 1.5rem; color: #fff; cursor: pointer; }
+
+/* --- HERO SECTION ADJUSTMENT --- */
+/* Add extra padding to the top so the fixed nav doesn't cover the hero text */
+.hero-section {
+    min-height: 100vh; /* Full height */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    position: relative; 
+    padding: 140px 20px 100px; /* Increased top padding to 140px */
+}
+
+/* Mobile Responsive Adjustments for Fixed Nav */
+@media (max-width: 768px) {
+    .glass-nav { padding: 15px 20px; }
+    
+    .nav-links {
+        position: fixed; /* Fixed here too */
+        top: 70px; /* Height of the nav bar */
+        left: 0; 
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(3, 3, 11, 0.98); 
+        flex-direction: column; 
+        padding: 40px;
+        display: none;
+        overflow-y: auto;
+    }
+    .nav-links.active { display: flex; }
+    .hamburger-icon { display: block; }
+}
+
+/* --- CONTENT SECTIONS --- */
+.section-pad { padding: 80px 0; }
+.bg-darker { background: rgba(0,0,0,0.3); }
+.section-heading { color: var(--neon-blue); border-bottom: 2px solid var(--neon-purple); display: inline-block; margin-bottom: 20px; }
+.glass-panel {
+    background: var(--bg-panel); border: var(--glass-border);
+    padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);
+}
+.highlight-text { font-size: 1.2rem; color: #fff; font-weight: bold; margin-bottom: 15px; }
+
+/* --- TRACKS --- */
+.track-container { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+.track-box {
+    flex: 1; min-width: 200px;
+    background: rgba(0, 243, 255, 0.05); padding: 20px;
+    border-left: 3px solid var(--neon-blue);
+}
+.track-box h4 { font-size: 1rem; color: var(--neon-blue); margin: 10px 0; }
+.track-box i { font-size: 1.5rem; color: var(--neon-purple); }
+
+/* --- COMMITTEE --- */
+.patron-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0));
+    border: 1px solid rgba(255,255,255,0.1); padding: 30px; text-align: center;
+    border-radius: 10px; margin-bottom: 20px;
+}
+.patron-card .role {
+    font-size: 0.8rem; letter-spacing: 2px; color: var(--neon-gold); margin-bottom: 10px;
+}
+.member-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;
+}
+.member-item {
+    background: rgba(255,255,255,0.03); padding: 15px; text-align: center;
+    border-radius: 5px; border: 1px solid transparent;
+}
+.member-item:hover { border-color: var(--neon-blue); background: rgba(0, 243, 255, 0.05); }
+
+/* --- SPONSORSHIP --- */
+.sponsorship-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;
+}
+.sponsor-card {
+    background: var(--bg-panel); border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px; text-align: center; border-radius: 15px; position: relative;
+    transition: 0.3s;
+}
+.sponsor-card:hover { transform: translateY(-10px); }
+.sponsor-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.sponsor-card .price { font-size: 1.5rem; font-weight: bold; color: #fff; margin-bottom: 20px; }
+.benefits { list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-muted); }
+.benefits li { margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+
+/* Tier Specifics */
+.platinum { border: 1px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 243, 255, 0.1); }
+.gold { border: 1px solid var(--neon-gold); }
+.badge-ribbon {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background: var(--neon-blue); color: #000; padding: 5px 15px;
+    font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+}
+
+/* --- PARTNERS --- */
+.partner-logos { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.partner-box {
+    font-family: var(--font-heading); font-size: 1.5rem; color: #555;
+    border: 2px solid #333; padding: 15px 30px; border-radius: 5px;
+    transition: 0.3s; cursor: default;
+}
+.partner-box:hover { color: #fff; border-color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+
+/* --- FOOTER --- */
+.quantum-footer {
+    background: #020205; padding: 50px 0 20px; border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-bottom { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #444; }
+.tag {
+    display: inline-block; font-size: 0.75rem; padding: 2px 8px;
+    border: 1px solid var(--text-muted); border-radius: 20px; margin: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute; top: 70px; left: 0; width: 100%;
+        background: rgba(0,0,0,0.95); flex-direction: column; padding: 20px;
+        display: none;
+    }
+    .nav-links.active { display: flex; }
+    .hamburger-icon { display: block; }
+    .event-details { flex-direction: column; align-items: flex-start; }
+    .detail-divider { display: none; }
+    .detail-card { margin-bottom: 15px; }
+    .glitch-title { font-size: 2.5rem; }
+}
+
+
+
